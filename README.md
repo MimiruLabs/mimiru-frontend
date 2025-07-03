@@ -1,1 +1,1 @@
-# mimiru-frontend
+➡️ [Read more about Mimiru Frontend](../../wiki/Wiki-Home)
