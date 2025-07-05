@@ -1,7 +1,6 @@
-import React from "react";
+import { redirect } from 'next/navigation'
+import { ROUTES } from '@/constants'
 
-const HomePage = () => {
-  return <div>HomePage</div>;
-};
-
-export default HomePage;
+export default function RootPage() {
+  redirect(ROUTES.HOME)
+} 

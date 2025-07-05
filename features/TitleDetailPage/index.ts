@@ -1,0 +1,1 @@
+export { TitleDetailPage } from './TitleDetailPage'; 
