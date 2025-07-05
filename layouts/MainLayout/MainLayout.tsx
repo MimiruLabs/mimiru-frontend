@@ -3,12 +3,9 @@ import { Container } from '@/components/Container'
 import { MainLayoutHeader } from '@/layouts/MainLayout/Header'
 import { Footer } from '@/layouts/MainLayout/Footer'
 import { ScrollToTop } from '@/components/ScrollToTop'
+import { BaseProps } from '@/types'
 
-interface MainLayoutProps {
-  children: React.ReactNode
-}
-
-const MainLayout = ({ children }: MainLayoutProps) => {
+const MainLayout = ({ children }: BaseProps) => {
   return (
     <div className="min-h-screen flex flex-col">
       <MainLayoutHeader />

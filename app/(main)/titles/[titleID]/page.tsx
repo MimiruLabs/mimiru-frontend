@@ -1,9 +1,10 @@
 import React from 'react'
 import type { Metadata } from 'next'
 import { TitleDetailPage } from '@/features/TitleDetailPage'
+import { PageProps } from '@/types'
 
-type Props = {
-  params: { titleID: string }
+type Props = PageProps & {
+  params: Promise<{ titleID: string }>
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

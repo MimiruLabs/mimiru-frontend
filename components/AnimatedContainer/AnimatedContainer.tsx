@@ -1,11 +1,9 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { ReactNode } from 'react';
+import { BaseProps } from '@/types';
 
-interface AnimatedContainerProps {
-  children: ReactNode;
-  className?: string;
+interface AnimatedContainerProps extends BaseProps {
   delay?: number;
   duration?: number;
   direction?: 'up' | 'down' | 'left' | 'right';

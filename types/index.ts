@@ -5,6 +5,6 @@ export interface BaseProps {
 }
 
 export interface PageProps {
-  params?: Record<string, string>
-  searchParams?: Record<string, string | string[]>
+  params?: Promise<Record<string, string>>
+  searchParams?: Promise<Record<string, string | string[]>>
 } 

@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils'
 import React from 'react'
+import { BaseProps } from '@/types'
 
 type TypographyVariant = 
   | 'h1' 
@@ -16,11 +17,9 @@ type TypographyVariant =
 
 type TypographyWeight = 'light' | 'normal' | 'medium' | 'semibold' | 'bold' | 'extrabold'
 
-interface TypographyProps {
+interface TypographyProps extends BaseProps {
   variant?: TypographyVariant
   weight?: TypographyWeight
-  children: React.ReactNode
-  className?: string
   as?: React.ElementType
 }
 
