@@ -114,6 +114,29 @@ export const LoadingIndicator = () => {
     };
   }, []);
 
+  // Listen for navigation start events (App Router approach)
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const link = target.closest('a[href]');
+      
+      if (link && link.getAttribute('href')?.startsWith('/')) {
+        const href = link.getAttribute('href');
+        if (href && href !== pathname) {
+          setIsLoading(true);
+          setProgress(0);
+        }
+      }
+    };
+
+    // Listen for clicks on navigation links
+    document.addEventListener('click', handleClick);
+
+    return () => {
+      document.removeEventListener('click', handleClick);
+    };
+  }, [pathname]);
+
   return (
     <AnimatePresence>
       {isLoading && (
