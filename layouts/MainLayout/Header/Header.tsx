@@ -12,7 +12,7 @@ const MainLayoutHeader = () => {
       <div>
           <Container className='flex flex-col py-4 gap-3 items-center'>
           <Divider size="sm" color="default" />
-          <div className='flex items-center justify-between w-full gap-4 px-2'>
+          <div className='flex items-center justify-between w-full gap-2 px-1 sm:px-2'>
               <nav className='flex items-center gap-4 px-2 py-1 rounded-full bg-zinc-800 border border-zinc-700 shadow shadow-zinc-800'>
                 <Link href={ROUTES.HOME} className='px-4 py-1.5 rounded-full'>
                   <Typography variant="body-sm" weight="medium">
