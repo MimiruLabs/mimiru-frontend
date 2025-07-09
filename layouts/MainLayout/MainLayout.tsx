@@ -7,7 +7,7 @@ import { BaseProps } from '@/types'
 
 const MainLayout = ({ children }: BaseProps) => {
   return (
-    <div className="min-h-screen flex flex-col relative">
+    <div className="min-h-screen flex flex-col relative scroll-smooth">
       <MainLayoutHeader />
       <main className="flex-1">
           {children}

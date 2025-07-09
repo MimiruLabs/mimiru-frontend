@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${mPlusRounded.variable} antialiased bg-zinc-950 text-zinc-100`}
+        className={`${mPlusRounded.variable} antialiased bg-zinc-950 text-zinc-100 overscroll-y-none scroll-smooth`}
       >
         <Suspense fallback={null}>
           <LoadingIndicator />

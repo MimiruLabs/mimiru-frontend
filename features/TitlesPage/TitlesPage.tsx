@@ -3,6 +3,7 @@
 import React from 'react'
 import { Typography } from '@/components/Typography'
 import { AnimatedContainer } from '@/components/AnimatedContainer'
+import { TitleCard } from '@/components/TitleCard'
 
 const TitlesPage = () => {
   // Mock data for demonstration - in real app this would come from API
@@ -52,32 +53,13 @@ const TitlesPage = () => {
           {/* Titles Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {mockTitles.map((title) => (
-              <div key={title.id} className="bg-zinc-900 rounded-lg border border-zinc-800 p-6 hover:border-zinc-600 transition-colors cursor-pointer">
-                <div className="flex justify-between items-start mb-3">
-                  <Typography variant="h4" weight="semibold" className="flex-1">
-                    {title.title}
-                  </Typography>
-                  <div className="flex items-center gap-1 ml-2">
-                    <span className="text-yellow-400">★</span>
-                    <Typography variant="body-sm" weight="medium">
-                      {title.rating}
-                    </Typography>
-                  </div>
-                </div>
-                <Typography variant="body-sm" weight="normal" className="text-zinc-400 mb-4">
-                  {title.category}
-                </Typography>
-                <div className="flex justify-between items-center">
-                  <Typography variant="caption" weight="normal" className="text-zinc-500">
-                    ID: {title.id}
-                  </Typography>
-                  <button className="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 rounded-lg transition-colors">
-                    <Typography variant="body-sm" weight="medium">
-                      View Details
-                    </Typography>
-                  </button>
-                </div>
-              </div>
+              <TitleCard
+                key={title.id}
+                title={title.title}
+                category={title.category}
+                rating={title.rating}
+                href={`/titles/${title.id}`}
+              />
             ))}
           </div>
 
@@ -114,4 +96,4 @@ const TitlesPage = () => {
   )
 }
 
-export { TitlesPage } 
+export { TitlesPage }
