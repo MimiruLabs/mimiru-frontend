@@ -38,6 +38,21 @@ const extraInfoVariants: Variants = {
   },
 };
 
+const CutCornerBox = () => (
+  <svg width="60" height="60" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+  <path
+    d="
+      M 300 300
+      L 150 300
+      A 150 150 0 0 0 300 150
+      Z
+    "
+    fill="currentColor"
+  />
+</svg>
+);
+
+
 export const TitleCard: React.FC<TitleCardProps> = ({
   title,
   category,
@@ -75,10 +90,12 @@ export const TitleCard: React.FC<TitleCardProps> = ({
         />
       </div>
       <motion.div
-        className="absolute bottom-0 left-0 w-full bg-zinc-950/90 px-4 py-3 flex flex-col justify-center z-20"
+        className="absolute bottom-0 left-0 w-full bg-zinc-950/90 px-4 py-3 flex flex-col justify-center z-20 rounded-tl-3xl drop-shadow-inherit shadow-red-300"
         variants={bottomVariants}
-        style={{ overflow: "hidden" }}
       >
+        <div className="absolute -top-15 right-0 text-zinc-950/90">
+          <CutCornerBox />
+        </div>
         <div className="flex items-center justify-between flex-nowrap gap-2">
           <Typography variant="h6" className="text-white">
             {title}
