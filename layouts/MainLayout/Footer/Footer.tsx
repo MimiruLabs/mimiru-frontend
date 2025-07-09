@@ -4,7 +4,7 @@ import { Container } from '@/components/Container'
 import { Divider } from '@/components/Divider'
 import { AnimatedContainer } from '@/components/AnimatedContainer'
 
-const Footer = () => {
+const MainLayoutFooter = () => {
   return (
     <AnimatedContainer direction="up" duration={0.5} delay={0.2}>
       <footer className="mt-auto">
@@ -19,4 +19,4 @@ const Footer = () => {
   )
 }
 
-export { Footer }
+export { MainLayoutFooter as Footer }

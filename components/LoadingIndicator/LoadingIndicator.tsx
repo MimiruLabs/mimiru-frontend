@@ -144,7 +144,7 @@ export const LoadingIndicator = () => {
           initial={{ opacity: 0, y: -2 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -2 }}
-          className="fixed top-0 left-0 right-0 z-50 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-lg"
+          className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-lg z-[999]"
           style={{
             transform: `scaleX(${progress / 100})`,
             transformOrigin: 'left',

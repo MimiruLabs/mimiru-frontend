@@ -1,48 +1,68 @@
-import { Container } from '@/components/Container'
-import { Divider } from '@/components/Divider'
-import { ROUTES, ROUTE_NAMES } from '@/constants'
-import { Typography } from '@/components/Typography'
-import { AnimatedContainer } from '@/components/AnimatedContainer'
-import Link from 'next/link'
-import React from 'react'
+import { ROUTES, ROUTE_NAMES } from "@/constants";
+import { Typography } from "@/components/Typography";
+import { AnimatedContainer } from "@/components/AnimatedContainer";
+import Link from "next/link";
+import { cn } from "@/utils/cn";
+import { useMemo } from "react";
 
-const MainLayoutHeader = () => {
+const containerClasses = cn(
+  "flex items-center justify-between",
+  "absolute z-50 top-0 left-0 right-0",
+  "rounded-b-2xl px-2 py-4 sm:px-4",
+  "w-full container mx-auto"
+);
+
+const navClasses = cn(
+  "flex items-center justify-center gap-4",
+  "px-2 py-1 rounded-full",
+  "bg-zinc-900 border border-zinc-700",
+  "shadow-lg shadow-zinc-800",
+);
+
+const linkClasses = "px-4 py-1.5 rounded-full";
+
+type NavLink = { href: string; label: string };
+
+const Navigation: React.FC = () => {
+  const NAV_LINKS: NavLink[] = useMemo(() => [
+    { href: ROUTES.HOME, label: ROUTE_NAMES.HOME },
+    { href: ROUTES.TITLES, label: ROUTE_NAMES.TITLES },
+    { href: ROUTES.ABOUT, label: ROUTE_NAMES.ABOUT },
+  ], []);
+
   return (
-    <AnimatedContainer direction="down" duration={0.5} delay={0.1}>
-      <div>
-          <Container className='flex flex-col py-4 gap-3 items-center'>
-          <Divider size="sm" color="default" />
-          <div className='flex items-center justify-between w-full gap-2 px-1 sm:px-2'>
-              <nav className='flex items-center gap-4 px-2 py-1 rounded-full bg-zinc-800 border border-zinc-700 shadow shadow-zinc-800'>
-                <Link href={ROUTES.HOME} className='px-4 py-1.5 rounded-full'>
-                  <Typography variant="body-sm" weight="medium">
-                    {ROUTE_NAMES.HOME}
-                  </Typography>
-                </Link>
-                <Link href={ROUTES.TITLES} className='px-4 py-1.5 rounded-full'>
-                  <Typography variant="body-sm" weight="medium">
-                    {ROUTE_NAMES.TITLES}
-                  </Typography>
-                </Link>
-                <Link href={ROUTES.ABOUT} className='px-4 py-2 rounded-full'>
-                  <Typography variant="body-sm" weight="medium">
-                    {ROUTE_NAMES.ABOUT}
-                  </Typography>
-                </Link>
-              </nav>
-            <div>
-              <Link href={ROUTES.HOME} className='flex px-6 py-[12px] rounded-full bg-zinc-800 border border-zinc-700 shadow shadow-zinc-800'>
-                <Typography variant="body-sm" weight="medium">
-                  Mimiru
-                </Typography>
-              </Link>
-            </div>
-          </div>
-          <Divider size="sm" color="default" />
-        </Container>
-      </div>
-    </AnimatedContainer>
-  )
-}
+    <nav className={navClasses}>
+      {NAV_LINKS.map(({ href, label }) => (
+        <Link key={href} href={href} className={linkClasses}>
+          <Typography variant="body-sm" weight="medium">
+            {label}
+          </Typography>
+        </Link>
+      ))}
+    </nav>
+  );
+};
 
-export { MainLayoutHeader }
+const LoginButton: React.FC = () => (
+  <Link href={ROUTES.HOME} className={linkClasses}>
+    <Typography variant="body-sm" weight="semibold">Login</Typography>
+  </Link>
+);
+
+const MainLayoutHeader: React.FC = () => (
+  <div className={containerClasses}>
+    <AnimatedContainer delay={0.1} className="flex items-center">
+      <Link href={ROUTES.HOME}>
+        <Typography variant="h4" weight="bold">Mimiru</Typography>
+      </Link>
+    </AnimatedContainer>
+    <AnimatedContainer delay={0.2} className="w-full max-w-lg mx-auto">
+      <Navigation />
+    </AnimatedContainer>
+    <AnimatedContainer delay={0.3} className="flex items-center">
+      <LoginButton />
+    </AnimatedContainer>
+  </div>
+);
+
+export { MainLayoutHeader };

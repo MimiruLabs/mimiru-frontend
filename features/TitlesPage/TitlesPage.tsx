@@ -16,7 +16,7 @@ const TitlesPage = () => {
   ]
 
   return (
-    <AnimatedContainer>
+    <AnimatedContainer className='pt-20'>
       <div className="py-8">
         <div className="max-w-6xl mx-auto">
           <Typography variant="h1" weight="bold" className="mb-8 text-center">

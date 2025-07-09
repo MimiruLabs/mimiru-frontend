@@ -7,12 +7,10 @@ import { BaseProps } from '@/types'
 
 const MainLayout = ({ children }: BaseProps) => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col relative">
       <MainLayoutHeader />
       <main className="flex-1">
-        <Container>
           {children}
-        </Container>
       </main>
       <Footer />
       <ScrollToTop />
