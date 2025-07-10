@@ -1,7 +1,7 @@
 import React from 'react'
 import { Container } from '@/components/Container'
-import { MainLayoutHeader } from '@/layouts/MainLayout/Header'
-import { Footer } from '@/layouts/MainLayout/Footer'
+import { MainLayoutHeader } from '@/layouts/MainLayout/components/Header'
+import { Footer } from '@/layouts/MainLayout/components/Footer'
 import { ScrollToTop } from '@/components/ScrollToTop'
 import { BaseProps } from '@/types'
 

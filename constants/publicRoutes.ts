@@ -6,6 +6,9 @@ export const PUBLIC_ROUTES = [
   ROUTES.HOME,
   ROUTES.TITLES,
   ROUTES.ABOUT,
+  ROUTES.AUTH,
+  ROUTES.SIGN_IN,
+  ROUTES.SIGN_UP,
 ] as const
 
 // Routes that are always accessible (even when not authenticated)
@@ -13,6 +16,9 @@ export const ALWAYS_PUBLIC_ROUTES = [
   ROUTES.ROOT,
   ROUTES.HOME,
   ROUTES.ABOUT,
+  ROUTES.AUTH,
+  ROUTES.SIGN_IN,
+  ROUTES.SIGN_UP,
 ] as const
 
 // Routes that require authentication

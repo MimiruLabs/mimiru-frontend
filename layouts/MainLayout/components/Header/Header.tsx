@@ -44,7 +44,7 @@ const Navigation: React.FC = () => {
 };
 
 const LoginButton: React.FC = () => (
-  <NavigationLink href={ROUTES.HOME} className={linkClasses}>
+  <NavigationLink href={ROUTES.SIGN_IN} className={linkClasses}>
     <Typography variant="body-sm" weight="semibold">Login</Typography>
   </NavigationLink>
 );

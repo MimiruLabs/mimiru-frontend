@@ -1,3 +1,3 @@
-export { MainLayoutHeader } from './Header'
-export { Footer } from './Footer'
+export { MainLayoutHeader } from './components/Header'
+export { Footer } from './components/Footer'
 export { MainLayout } from './MainLayout' 
