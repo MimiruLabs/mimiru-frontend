@@ -1,7 +1,7 @@
 import { ROUTES, ROUTE_NAMES } from "@/constants";
 import { Typography } from "@/components/Typography";
 import { AnimatedContainer } from "@/components/AnimatedContainer";
-import Link from "next/link";
+import { NavigationLink } from "@/components/NavigationLink";
 import { cn } from "@/utils/cn";
 import { useMemo } from "react";
 
@@ -14,12 +14,12 @@ const containerClasses = cn(
 
 const navClasses = cn(
   "flex items-center justify-center gap-4",
-  "px-2 py-1 rounded-full",
+  "px-2 py-2.5 rounded-full",
   "bg-zinc-900 border border-zinc-700",
   "shadow-lg shadow-zinc-800",
 );
 
-const linkClasses = "px-4 py-1.5 rounded-full";
+const linkClasses = "px-4 rounded-full";
 
 type NavLink = { href: string; label: string };
 
@@ -33,28 +33,28 @@ const Navigation: React.FC = () => {
   return (
     <nav className={navClasses}>
       {NAV_LINKS.map(({ href, label }) => (
-        <Link key={href} href={href} className={linkClasses}>
+        <NavigationLink key={href} href={href} className={linkClasses}>
           <Typography variant="body-sm" weight="medium">
             {label}
           </Typography>
-        </Link>
+        </NavigationLink>
       ))}
     </nav>
   );
 };
 
 const LoginButton: React.FC = () => (
-  <Link href={ROUTES.HOME} className={linkClasses}>
+  <NavigationLink href={ROUTES.HOME} className={linkClasses}>
     <Typography variant="body-sm" weight="semibold">Login</Typography>
-  </Link>
+  </NavigationLink>
 );
 
 const MainLayoutHeader: React.FC = () => (
   <div className={containerClasses}>
     <AnimatedContainer delay={0.1} className="flex items-center">
-      <Link href={ROUTES.HOME}>
+      <NavigationLink href={ROUTES.HOME}>
         <Typography variant="h4" weight="bold">Mimiru</Typography>
-      </Link>
+      </NavigationLink>
     </AnimatedContainer>
     <AnimatedContainer delay={0.2} className="w-full max-w-lg mx-auto">
       <Navigation />

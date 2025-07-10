@@ -1,19 +1,18 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname, useSearchParams } from 'next/navigation';
+import { useLoading } from '@/lib/useLoading';
 
 export const LoadingIndicator = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const { isLoading, progress, startLoading, setProgress, completeLoading, resetLoading } = useLoading();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   useEffect(() => {
     // Start loading when route changes
-    setIsLoading(true);
-    setProgress(0);
+    startLoading();
 
     // Real loading progress based on actual page load events
     const simulateLoading = () => {
@@ -31,10 +30,9 @@ export const LoadingIndicator = () => {
       // Final completion
       setTimeout(() => setProgress(95), 500);
       setTimeout(() => {
-        setProgress(100);
+        completeLoading();
         setTimeout(() => {
-          setIsLoading(false);
-          setProgress(0);
+          resetLoading();
         }, 200);
       }, 600);
     };
@@ -43,10 +41,9 @@ export const LoadingIndicator = () => {
 
     // Listen for actual page load events
     const handleLoad = () => {
-      setProgress(100);
+      completeLoading();
       setTimeout(() => {
-        setIsLoading(false);
-        setProgress(0);
+        resetLoading();
       }, 200);
     };
 
@@ -64,19 +61,18 @@ export const LoadingIndicator = () => {
     return () => {
       window.removeEventListener('load', handleLoad);
     };
-  }, [pathname, searchParams]);
+  }, [pathname, searchParams, startLoading, setProgress, completeLoading, resetLoading]);
 
   // Also trigger on initial page load
   useEffect(() => {
     if (document.readyState === 'loading') {
-      setIsLoading(true);
+      startLoading();
       setProgress(20);
       
       const handleInitialLoad = () => {
-        setProgress(100);
+        completeLoading();
         setTimeout(() => {
-          setIsLoading(false);
-          setProgress(0);
+          resetLoading();
         }, 300);
       };
 
@@ -88,20 +84,19 @@ export const LoadingIndicator = () => {
         window.removeEventListener('load', handleInitialLoad);
       };
     }
-  }, []);
+  }, [startLoading, setProgress, completeLoading, resetLoading]);
 
   // Track real navigation events
   useEffect(() => {
     const handleBeforeUnload = () => {
-      setIsLoading(true);
+      startLoading();
       setProgress(10);
     };
 
     const handlePageShow = () => {
-      setProgress(100);
+      completeLoading();
       setTimeout(() => {
-        setIsLoading(false);
-        setProgress(0);
+        resetLoading();
       }, 300);
     };
 
@@ -112,7 +107,7 @@ export const LoadingIndicator = () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
       window.removeEventListener('pageshow', handlePageShow);
     };
-  }, []);
+  }, [startLoading, setProgress, completeLoading, resetLoading]);
 
   // Listen for navigation start events (App Router approach)
   useEffect(() => {
@@ -123,7 +118,7 @@ export const LoadingIndicator = () => {
       if (link && link.getAttribute('href')?.startsWith('/')) {
         const href = link.getAttribute('href');
         if (href && href !== pathname) {
-          setIsLoading(true);
+          startLoading();
           setProgress(0);
         }
       }
@@ -135,7 +130,7 @@ export const LoadingIndicator = () => {
     return () => {
       document.removeEventListener('click', handleClick);
     };
-  }, [pathname]);
+  }, [pathname, startLoading, setProgress]);
 
   return (
     <AnimatePresence>

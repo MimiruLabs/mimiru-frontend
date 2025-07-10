@@ -2,7 +2,7 @@ import React from "react";
 import { Typography } from "@/components/Typography";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
 import { motion } from "framer-motion";
-import { useRouter } from "next/navigation"; // Use "next/router" if using Next.js 12
+import { useNavigation } from "@/lib/useNavigation";
 
 type TitleCardProps = {
   title: string;
@@ -59,13 +59,13 @@ export const TitleCard: React.FC<TitleCardProps> = ({
   rating,
   href,
 }) => {
-  const router = useRouter();
+  const { navigateWithLoading } = useNavigation();
 
   const handleClick = () => {
-    // Wait for the tap animation to finish before redirecting
-    setTimeout(() => {
-      if (href) router.push(href);
-    }, 150); // 150ms matches the tap animation
+    if (href) {
+      // Start loading immediately and navigate after animation delay
+      navigateWithLoading(href, 150); // 150ms matches the tap animation
+    }
   };
 
   return (
