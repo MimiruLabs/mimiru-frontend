@@ -9,7 +9,6 @@ import { useState, useTransition } from 'react';
 import { PasswordInput } from '@/components/PasswordInput';
 import { TextInput } from '@/components/TextInput';
 import { FormError } from '@/components/FormError';
-import { AnimatedContainer } from '@/components/AnimatedContainer';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -40,23 +39,7 @@ export default function SignInPage() {
   };
 
   return (
-    <AnimatedContainer duration={0.5}>
-      <motion.div
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
-        className="w-full max-w-md mx-auto bg-zinc-900 border border-zinc-800 rounded-2xl shadow-2xl p-8 flex flex-col gap-6"
-      >
-        {/* Logo/Brand */}
-        <div className="flex flex-col items-center gap-2">
-          <div className="w-14 h-14 rounded-full bg-gradient-to-br from-blue-700 via-purple-700 to-indigo-700 flex items-center justify-center mb-2 shadow-lg">
-            {/* Replace with your logo if desired */}
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#fff" /><path d="M7 12l3 3 7-7" stroke="#2563eb" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-          </div>
-          <h1 className="text-3xl font-extrabold text-zinc-100 tracking-tight">Sign in to Mimiru</h1>
-          <p className="text-zinc-400 text-base">Welcome back! Please enter your details.</p>
-        </div>
-        <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4" autoComplete="on" noValidate>
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4" autoComplete="on" noValidate>
           <AnimatePresence>
             {formError && (
               <motion.div
@@ -132,7 +115,5 @@ export default function SignInPage() {
             Google (coming soon)
           </button>
     </form>
-      </motion.div>
-    </AnimatedContainer>
   );
 }

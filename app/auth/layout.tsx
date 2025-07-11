@@ -8,10 +8,12 @@ interface AuthLayoutProps {
 
 export default function AuthLayoutWrapper({ children }: AuthLayoutProps) {
   return (
-    <AuthLayout>
+    <>
       <BackButton />
-      {children}
-    </AuthLayout>
+      <AuthLayout>
+        {children}
+      </AuthLayout>
+    </>
   );
 }
         
