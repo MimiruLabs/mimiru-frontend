@@ -1,4 +1,5 @@
 import { AuthLayout } from '@/layouts/AuthLayout';
+import { BackButton } from '@/components/BackButton';
 import { ReactNode } from 'react'
 
 interface AuthLayoutProps {
@@ -6,6 +7,11 @@ interface AuthLayoutProps {
 }
 
 export default function AuthLayoutWrapper({ children }: AuthLayoutProps) {
-  return <AuthLayout>{children}</AuthLayout>;
+  return (
+    <AuthLayout>
+      <BackButton />
+      {children}
+    </AuthLayout>
+  );
 }
         
