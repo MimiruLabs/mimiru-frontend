@@ -15,7 +15,7 @@ const containerClasses = cn(
 const navClasses = cn(
   "flex items-center justify-center gap-4",
   "px-2 py-2.5 rounded-full",
-  "bg-zinc-900 border border-zinc-700",
+  "border border-zinc-700",
   "shadow-lg shadow-zinc-800",
 );
 
