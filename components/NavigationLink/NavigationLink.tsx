@@ -37,7 +37,7 @@ export const NavigationLink: React.FC<NavigationLinkProps> = ({
     <button
       onClick={handleClick}
       className={cn(
-        'transition-colors duration-200 hover:text-white focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2 focus:ring-offset-zinc-950',
+        'transition-colors duration-200 hover:text-white focus:outline-none hover:cursor-pointer',
         className
       )}
     >
