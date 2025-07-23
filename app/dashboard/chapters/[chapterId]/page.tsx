@@ -1,5 +1,11 @@
 import { ChapterEditDashboard } from '@/features/Dashboard/ChapterEditDashboard';
+import { PageProps } from '@/types';
 
-export default function ChapterEditDashboardPage({ params }: { params: { chapterId: string } }) {
-  return <ChapterEditDashboard chapterId={params.chapterId} />;
+type Props = PageProps & {
+  params: Promise<{ chapterId: string }>
+}
+
+export default async function ChapterEditDashboardPage({ params }: Props) {
+  const { chapterId } = await params;
+  return <ChapterEditDashboard chapterId={chapterId} />;
 }
