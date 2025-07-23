@@ -1,4 +1,4 @@
-import { ChapterEditDashboard } from '@/features/Dashboard/ChapterEditDashboard';
+import { ChapterEditDashboard } from '@/features/dashboard/chapters';
 import { PageProps } from '@/types';
 
 type Props = PageProps & {

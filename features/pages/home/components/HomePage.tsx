@@ -2,10 +2,10 @@
 
 import React from "react";
 import { AnimatedContainer } from "@/components/AnimatedContainer";
-import { HeroSection } from "./sections/HeroSection";
-import { RecommendationSection } from "./sections/RecommendationSection";
-import { NewSection } from "./sections/NewSection";
-import { MostPopularSection } from "./sections/MostPopularSection";
+import { HeroSection } from "./HeroSection";
+import { RecommendationSection } from "./RecommendationSection";
+import { NewSection } from "./NewSection";
+import { MostPopularSection } from "./MostPopularSection";
 
 const HomePage = () => {
   return (

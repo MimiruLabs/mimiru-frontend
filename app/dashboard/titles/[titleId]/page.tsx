@@ -1,4 +1,4 @@
-import { TitleDetailDashboard } from '@/features/Dashboard/TitleDetailDashboard';
+import { TitleDetailDashboard } from '@/features/dashboard/titles';
 import { PageProps } from '@/types';
 
 type Props = PageProps & {

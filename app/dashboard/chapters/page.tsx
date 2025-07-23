@@ -1,4 +1,4 @@
-import { ChaptersDashboard } from '@/features/Dashboard/ChaptersDashboard';
+import { ChaptersDashboard } from '@/features/dashboard/chapters';
 
 export default function ChaptersDashboardPage() {
   return <ChaptersDashboard />;

@@ -1,6 +1,6 @@
 import React from 'react'
 import type { Metadata } from 'next'
-import { TitleDetailPage } from '@/features/TitleDetailPage'
+import { TitleDetailPage } from '@/features/titles'
 import { PageProps } from '@/types'
 
 type Props = PageProps & {

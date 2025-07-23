@@ -1,4 +1,4 @@
-import { GenresDashboard } from '@/features/Dashboard/GenresDashboard';
+import { GenresDashboard } from '@/features/dashboard/genres';
 
 export default function GenresDashboardPage() {
   return <GenresDashboard />;

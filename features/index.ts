@@ -1,4 +1,4 @@
-export { HomePage } from './HomePage'
-export { AboutPage } from './AboutPage'
-export { TitlesPage } from './TitlesPage'
-export { TitleDetailPage } from './TitleDetailPage' 
+// Main features barrel export
+export * from './pages';
+export * from './titles';
+export * from './dashboard';
