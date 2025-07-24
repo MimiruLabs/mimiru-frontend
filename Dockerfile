@@ -49,6 +49,9 @@ RUN npm ci --only=production --prefer-offline --no-audit --no-fund && \
 
 # Copy built application from builder stage
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+
+# Copy public directory (create empty one if it doesn't exist in builder)
+RUN mkdir -p ./public
 COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 
 # Change ownership of app directory
