@@ -8,7 +8,8 @@ export class UsersRepository extends BaseRepository<UserProfile> {
 
   // Find user by string ID (since user IDs are UUIDs)
   async findByStringId(id: string): Promise<UserProfile | null> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .select('*')
       .eq('id', id)
@@ -22,7 +23,8 @@ export class UsersRepository extends BaseRepository<UserProfile> {
 
   // Override create for string IDs
   async createProfile(item: Omit<UserProfile, 'joined_at'>): Promise<UserProfile> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .insert({
         ...item,
@@ -37,7 +39,8 @@ export class UsersRepository extends BaseRepository<UserProfile> {
 
   // Override update for string IDs
   async updateProfile(id: string, item: Partial<Omit<UserProfile, 'id' | 'joined_at'>>): Promise<UserProfile> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .update(item)
       .eq('id', id)
@@ -50,7 +53,8 @@ export class UsersRepository extends BaseRepository<UserProfile> {
 
   // Find user by username
   async findByUsername(username: string): Promise<UserProfile | null> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .select('*')
       .eq('username', username)
@@ -64,7 +68,8 @@ export class UsersRepository extends BaseRepository<UserProfile> {
 
   // Find users by role
   async findByRole(role: 'reader' | 'author' | 'translator' | 'admin'): Promise<UserProfile[]> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .select('*')
       .eq('role', role)
@@ -77,7 +82,8 @@ export class UsersRepository extends BaseRepository<UserProfile> {
 
   // Find active users
   async findActive(): Promise<UserProfile[]> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .select('*')
       .eq('is_active', true)
@@ -89,7 +95,8 @@ export class UsersRepository extends BaseRepository<UserProfile> {
 
   // Search users by username or display name
   async search(query: string): Promise<UserProfile[]> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .select('*')
       .or(`username.ilike.%${query}%,display_name.ilike.%${query}%`)
@@ -102,7 +109,8 @@ export class UsersRepository extends BaseRepository<UserProfile> {
 
   // Update user role (admin only)
   async updateRole(userId: string, role: 'reader' | 'author' | 'translator' | 'admin'): Promise<UserProfile> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .update({ role })
       .eq('id', userId)
@@ -115,7 +123,8 @@ export class UsersRepository extends BaseRepository<UserProfile> {
 
   // Deactivate user
   async deactivate(userId: string): Promise<UserProfile> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .update({ is_active: false })
       .eq('id', userId)

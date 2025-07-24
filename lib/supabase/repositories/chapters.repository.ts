@@ -26,7 +26,8 @@ export class ChaptersRepository extends BaseRepository<Chapter> {
 
   // Find chapters by title version ID
   async findByTitleVersion(titleVersionId: number): Promise<Chapter[]> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .select('*')
       .eq('title_version_id', titleVersionId)
@@ -38,7 +39,8 @@ export class ChaptersRepository extends BaseRepository<Chapter> {
 
   // Get chapter with its pages
   async findWithPages(chapterId: number): Promise<ChapterWithPages | null> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .select(`
         *,
@@ -59,7 +61,8 @@ export class ChaptersRepository extends BaseRepository<Chapter> {
 
   // Find next chapter
   async findNext(titleVersionId: number, currentChapterNumber: number): Promise<Chapter | null> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .select('*')
       .eq('title_version_id', titleVersionId)
@@ -76,7 +79,8 @@ export class ChaptersRepository extends BaseRepository<Chapter> {
 
   // Find previous chapter
   async findPrevious(titleVersionId: number, currentChapterNumber: number): Promise<Chapter | null> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .select('*')
       .eq('title_version_id', titleVersionId)
@@ -93,7 +97,8 @@ export class ChaptersRepository extends BaseRepository<Chapter> {
 
   // Get latest chapters across all titles
   async findLatest(limit: number = 10): Promise<ChapterWithTitleInfo[]> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .select(`
         *,

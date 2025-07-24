@@ -17,7 +17,8 @@ export class TitlesRepository extends BaseRepository<Title> {
 
   // Custom query for titles with specific status
   async findByStatus(status: 'ongoing' | 'completed' | 'hiatus'): Promise<Title[]> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .select('*')
       .eq('status', status)
@@ -29,16 +30,17 @@ export class TitlesRepository extends BaseRepository<Title> {
 
   // Paginated titles
   async findPaginated(page: number, limit: number = 10): Promise<{ data: Title[]; total: number }> {
+    const supabase = await this.getSupabase();
     const from = (page - 1) * limit;
     const to = from + limit - 1;
     
     const [dataResult, countResult] = await Promise.all([
-      this.supabase
+      supabase
         .from(this.tableName)
         .select('*')
         .range(from, to)
         .order('created_at', { ascending: false }),
-      this.supabase
+      supabase
         .from(this.tableName)
         .select('*', { count: 'exact', head: true })
     ]);
@@ -54,7 +56,8 @@ export class TitlesRepository extends BaseRepository<Title> {
 
   // Search titles by title or description
   async search(query: string): Promise<Title[]> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .select('*')
       .or(`title.ilike.%${query}%,description.ilike.%${query}%`)
@@ -66,7 +69,8 @@ export class TitlesRepository extends BaseRepository<Title> {
 
   // Find titles by creator
   async findByCreator(creatorId: string): Promise<Title[]> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .select('*')
       .eq('created_by', creatorId)
@@ -78,7 +82,8 @@ export class TitlesRepository extends BaseRepository<Title> {
 
   // Get titles with their genres
   async findWithGenres(): Promise<TitleWithGenres[]> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .select(`
         *,

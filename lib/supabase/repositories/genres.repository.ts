@@ -14,7 +14,8 @@ export class GenresRepository extends BaseRepository<Genre> {
 
   // Find genre by name
   async findByName(name: string): Promise<Genre | null> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .select('*')
       .eq('name', name)
@@ -28,7 +29,8 @@ export class GenresRepository extends BaseRepository<Genre> {
 
   // Get genres with title count
   async findWithTitleCount(): Promise<GenreWithTitleCount[]> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .select(`
         *,
@@ -43,7 +45,8 @@ export class GenresRepository extends BaseRepository<Genre> {
 
   // Search genres by name
   async search(query: string): Promise<Genre[]> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .select('*')
       .ilike('name', `%${query}%`)
