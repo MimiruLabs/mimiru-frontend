@@ -1,4 +1,4 @@
-# Multi-stage build for optimized production image
+# Multi-stage build optimized for CI/CD with limited memory
 
 # Build stage
 FROM node:18-alpine AS builder
@@ -9,20 +9,22 @@ WORKDIR /app
 # Install system dependencies
 RUN apk add --no-cache libc6-compat
 
-# Set Node.js memory limit to prevent OOM during build
-ENV NODE_OPTIONS="--max-old-space-size=2048"
+# Optimize Node.js for 6GB CI/CD runner
+ENV NODE_OPTIONS="--max-old-space-size=4096"
+ENV NPM_CONFIG_LOGLEVEL=error
+ENV NPM_CONFIG_PROGRESS=false
 
 # Copy package files
 COPY package.json package-lock.json* ./
 
-# Install all dependencies (including devDependencies for build)
-RUN npm ci --prefer-offline --no-audit --progress=false
+# Install dependencies efficiently for 6GB runner
+RUN npm ci --prefer-offline --no-audit --no-fund
 
 # Copy source code
 COPY . .
 
-# Build the application
-RUN npm run build
+# Build the application with CI-optimized script
+RUN npm run build:ci
 
 # Production stage
 FROM node:18-alpine AS runner
@@ -34,15 +36,16 @@ WORKDIR /app
 RUN apk add --no-cache libc6-compat
 
 # Create non-root user
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
 
 # Copy package files
 COPY package.json package-lock.json* ./
 
 # Install only production dependencies
-RUN npm ci --only=production --prefer-offline --no-audit --progress=false && \
-    npm cache clean --force
+RUN npm ci --only=production --prefer-offline --no-audit --no-fund && \
+    npm cache clean --force && \
+    rm -rf ~/.npm /tmp/*
 
 # Copy built application from builder stage
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
