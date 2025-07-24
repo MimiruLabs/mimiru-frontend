@@ -1,0 +1,52 @@
+name: Build Docker Image
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: self-hosted
+
+    steps:
+      - name: Display Runner Information
+        run: |
+          echo "🏃 Runner Name: ${{ runner.name }}"
+          echo "🖥️ Runner OS: ${{ runner.os }}"
+          echo "🏗️ Runner Architecture: ${{ runner.arch }}"
+          echo "📂 GitHub Workspace: ${{ github.workspace }}"
+          echo "📋 Job ID: ${{ github.job }}"
+          echo "🔧 Runner Environment:"
+          hostname
+          whoami
+          pwd
+          docker --version || echo "Docker not available"
+
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Environment
+        run: |
+          echo "🐳 Setting up Docker environment..."
+          docker --version
+          docker info
+
+      - name: Build Docker Image
+        run: |
+          echo "🏗️ Building Docker image..."
+          docker build -t mimiru-frontend:${{ github.sha }} .
+          docker build -t mimiru-frontend:latest .
+
+      - name: Display Build Results
+        run: |
+          echo "✅ Docker images built successfully:"
+          docker images | grep mimiru-frontend
+
+      - name: Cleanup (Optional)
+        if: always()
+        run: |
+          echo "🧹 Cleaning up old images..."
+          docker image prune -f
+          echo "Cleanup completed"
