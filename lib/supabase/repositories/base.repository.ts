@@ -1,12 +1,15 @@
 import { createSupabaseServerClient } from '@/lib/supabaseServer';
 
 export class BaseRepository<T> {
-  protected supabase = createSupabaseServerClient();
+  protected async getSupabase() {
+    return await createSupabaseServerClient();
+  }
   
   constructor(protected tableName: string) {}
 
   async findAll(): Promise<T[]> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .select('*');
     
@@ -15,7 +18,8 @@ export class BaseRepository<T> {
   }
 
   async findById(id: number): Promise<T | null> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .select('*')
       .eq('id', id)
@@ -28,7 +32,8 @@ export class BaseRepository<T> {
   }
 
   async create(item: Omit<T, 'id'>): Promise<T> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .insert(item)
       .select()
@@ -39,7 +44,8 @@ export class BaseRepository<T> {
   }
 
   async update(id: number, item: Partial<Omit<T, 'id'>>): Promise<T> {
-    const { data, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { data, error } = await supabase
       .from(this.tableName)
       .update(item)
       .eq('id', id)
@@ -51,7 +57,8 @@ export class BaseRepository<T> {
   }
 
   async delete(id: number): Promise<void> {
-    const { error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { error } = await supabase
       .from(this.tableName)
       .delete()
       .eq('id', id);
@@ -60,7 +67,8 @@ export class BaseRepository<T> {
   }
 
   async count(): Promise<number> {
-    const { count, error } = await this.supabase
+    const supabase = await this.getSupabase();
+    const { count, error } = await supabase
       .from(this.tableName)
       .select('*', { count: 'exact', head: true });
     

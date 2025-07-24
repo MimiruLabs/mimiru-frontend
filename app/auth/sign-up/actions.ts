@@ -5,7 +5,7 @@ import { createSupabaseServerClient } from '@/lib/supabaseServer';
 import { redirect } from 'next/navigation';
 
 export async function signUp(data: { email: string; password: string }) {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const { error } = await supabase.auth.signUp({
     email: data.email,
     password: data.password,
