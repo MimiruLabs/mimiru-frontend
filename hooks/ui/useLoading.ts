@@ -18,4 +18,4 @@ export const useLoading = create<LoadingState>((set) => ({
   setProgress: (progress: number) => set({ progress }),
   completeLoading: () => set({ progress: 100 }),
   resetLoading: () => set({ isLoading: false, progress: 0 }),
-})); 
+}));

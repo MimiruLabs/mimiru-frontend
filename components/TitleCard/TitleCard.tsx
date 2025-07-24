@@ -3,7 +3,7 @@ import React from "react";
 import { Typography } from "@/components/Typography";
 import { ImageWithFallback } from "@/components/ImageWithFallback";
 import { motion } from "framer-motion";
-import { useNavigation } from "@/lib/useNavigation";
+import { useNavigation } from "@/hooks/ui";
 
 type TitleCardProps = {
   title: string;

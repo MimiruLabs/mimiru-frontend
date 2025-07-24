@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useLoading } from './useLoading';
+import { useLoading } from './loading';
 
 export const useNavigation = () => {
   const router = useRouter();
@@ -26,4 +26,4 @@ export const useNavigation = () => {
     navigateWithLoading,
     router,
   };
-}; 
+};

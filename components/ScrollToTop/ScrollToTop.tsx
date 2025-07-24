@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useScroll } from '@/lib/useScroll';
+import React from 'react';
+import { useScroll } from '@/hooks/ui';
 import { AnimatedContainer } from '@/components/AnimatedContainer';
 
 interface ScrollToTopProps {

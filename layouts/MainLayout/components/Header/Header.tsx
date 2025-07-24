@@ -2,7 +2,7 @@ import { ROUTES, ROUTE_NAMES } from "@/constants";
 import { Typography } from "@/components/Typography";
 import { AnimatedContainer } from "@/components/AnimatedContainer";
 import { NavigationLink } from "@/components/NavigationLink";
-import { cn } from "@/utils/cn";
+import { cn } from "@/utils";
 import { useMemo } from "react";
 
 const containerClasses = cn(

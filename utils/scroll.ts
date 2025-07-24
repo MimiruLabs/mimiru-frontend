@@ -86,4 +86,4 @@ export const scrollToElementWithOffset = (
       behavior: options.behavior || 'smooth',
     });
   }
-}; 
+};

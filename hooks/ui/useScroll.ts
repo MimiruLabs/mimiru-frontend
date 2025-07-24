@@ -77,4 +77,4 @@ export const useScroll = () => {
     scrollToElement,
     scrollToPosition,
   };
-}; 
+};

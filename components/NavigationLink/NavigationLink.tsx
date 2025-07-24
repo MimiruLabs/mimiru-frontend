@@ -1,8 +1,8 @@
 'use client';
 
 import React from 'react';
-import { useNavigation } from '@/lib/useNavigation';
-import { cn } from '@/utils/cn';
+import { useNavigation } from '@/hooks/ui';
+import { cn } from '@/utils';
 
 interface NavigationLinkProps {
   href: string;

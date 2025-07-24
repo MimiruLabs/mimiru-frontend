@@ -3,7 +3,7 @@
 import { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname, useSearchParams } from 'next/navigation';
-import { useLoading } from '@/lib/useLoading';
+import { useLoading } from '@/hooks/ui';
 
 export const LoadingIndicator = () => {
   const { isLoading, progress, startLoading, setProgress, completeLoading, resetLoading } = useLoading();

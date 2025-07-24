@@ -1,8 +1,8 @@
-// All utilities
+// Common utilities
 export * from './common';
 export * from './validation';
 
-// Scroll utilities (functional, not hooks)
+// Scroll utilities (non-hook functions)
 export {
   scrollToElement,
   scrollToTop,
@@ -11,4 +11,4 @@ export {
   isElementInViewport,
   scrollToElementWithOffset,
   type ScrollOptions
-} from './scroll'; 
+} from './scroll';

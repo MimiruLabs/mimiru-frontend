@@ -1,6 +1,7 @@
 'use client';
 
-import { useNavigation } from "@/lib/useNavigation";
+import React from 'react';
+import { useNavigation } from '@/hooks/ui';
 
 export const BackButton = () => {
   const { router } = useNavigation();
