@@ -15,7 +15,8 @@
     "@supabase/supabase-js": "^2.50.4",
     "clsx": "^2.1.1",
     "framer-motion": "^12.23.0",
-    "next": "15.3.4",
+    "moon": "^1.0.0-beta.7",
+    "next": "^15.5.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.60.0",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@moonrepo/cli": "^1.40.5",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
